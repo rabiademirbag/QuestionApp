@@ -73,7 +73,7 @@ const questions = [
         "Her şeyin olduğu gibi mutluluğun da fobisi varmış. Bu fobiye ne ad verilir?",
       options: ["Çerofobi", "Euphobia", "Felicifobia", "Mutluluk Korkusu"],
       answer: "Çerofobi",
-      media: "fobi.jpg",
+      media: "mutluluk.jpg",
     },
   ];
 function Quiz(){
@@ -218,7 +218,7 @@ function Quiz(){
             {/*görselleri ve soruyu içeren div*/}
             <div className="quiz-images">
               {/*Her bir görselin yolu*/}
-              <img src={`/src/pictures/${current.media}`} alt="soru görseli" />
+              <img src={`/pictures/${current.media}`} alt="soru görseli" />
               {/*İlgili soru*/}
               <p>{current.question}</p>
             </div>
