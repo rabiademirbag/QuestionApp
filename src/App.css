@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+body {
+  /*margini sıfırladım*/
+  margin: 0;
+  /*paddingi sıfırladım*/
+  padding: 0;
+  /*özel olarak belirlediğim bg-coloru kullandım*/
+  background-color:var(--bg-color);
+  /*olabilecek taşmaları engelledim*/
+  overflow: hidden;
+  /*özel font verdim*/
+  font-family: "Lora", serif;
+  /*üzerine after elementi uygulayacağım için positionu relative verdim*/
+  position: relative;
+}
+/*kullanacağım renkleri bir kere tanımlayıp istediğim yerde kullandım*/
+:root{
+  --bg-color: #00304f;
+  --grid-color:#6d989e;
+  --font-color:#fff;
+  --border-color:#1a9c9638;
+  --logo-color:#178984;
+}
+/*arka plandaki ızgara görünümü*/
+body::after {
+  /* Pseudo element oluşturmak için gerekli boş içerik */
+  content: "";
+  /* Üzerine eklendiği elementin tamamını kaplaması için position absolute kullandım */
+  position: absolute;
+   /* top, right, bottom, left = 0*/
+  inset: 0;
+  /* Arka plan çizgilerini oluşturacak 4 farklı linear gradient */
+  background-image: 
+   /* Yatay çizgiler (kalın çizgiler) */
+    linear-gradient(var(--grid-color) 2px, transparent 2px), 
+    /* Dikey çizgiler (kalın çizgiler) */
+    linear-gradient(90deg, var(--grid-color) 2px, transparent 2px),
+    /* İnce yatay çizgiler (desen efekti) */
+    linear-gradient(var(--grid-color) 2px, transparent 2px),
+    /* İnce dikey çizgiler (desen efekti) */
+    linear-gradient(90deg, var(--grid-color) 2px, transparent 2px);
+    /* Her bir grid deseninin tekrar boyutu */
+  background-size: 600px 400px, 600px 400px, 250px 450px, 350px 450px;
+  /* Desenlerin sayfa üzerinde başlangıç konumları */
+  background-position: 
+  /* İlk iki çizgi sol üstten başlar */
+  0 0, 0 0, 
+  /* İnce çizgiler biraz daha içerden başlar */
+  100px 100px, 100px 100px;
+  /* Arka planda kalması için z index'e 0 verdim */
+  z-index: 0;
+  /* yarı saydam hale getirdim */
+  opacity: 0.4;
+   /*Oluşturduğum background tıklamaları engellemesin */
+  pointer-events: none;
+}
+.content {
+  position: relative;
+  /* Arka planın üzerinde kalması için z-index:1*/
+  z-index: 1;
+  /*içerikleri yatayda hizzalamak için flex kullandım*/
+  display: flex;
+  /* Dikeyde ortalama */
+  align-items: center;
+  /* Yatayda ortalama */
+  justify-content: center;
+  /* Tüm ekran yüksekliğini kaplar */
+  height: 100vh;
+}
+.card {
+  /* Kartın arka plan rengi*/
+  background-color: var(--font-color);
+  /*iç boşluk*/
+  padding: 40px;
+  /*Gölge efekti */
+  filter: drop-shadow(4px 4px 4px var(--grid-color));
+  /* Saydam açık yeşil kenarlık */
+  border: 10px solid var(--border-color);
+   /* Köşeleri yuvarlatma */
+  border-radius: 6px;
+  /* İçerikleri ortalama */
+  text-align: center;
+  /* Maksimum genişlik */
+  max-width: 600px;
+  /* Ekranın %90'ını kapsar */
+  width: 90%;
+  /* Hover için yumuşak geçiş */
+  transition: all 0.4s  ease-in-out;
+}
+.card:hover{
+  /* Hover olduğunda degrade arka plan */
+  background: linear-gradient(135deg, #a5dee4, #1a9c96);
+  /* Fontların rengi beyaza döner */
+  color: var(--font-color);
+}
+.card:hover .logo{
+  /*Hover olununca logonun arka planı değişir*/
+  background-color:var(--bg-color) ;
+}
+.card h4{
+  /* Başlık boyutu */
+  font-size: 30px;
+  /* Font kalınlığı */
+  font-weight: 700;
+  /* Başlık rengi */
+  color: var(--bg-color);
+}
+.card ul{
+  /* Madde imlerini kaldırır */
+  list-style-type: none;
+}
+.card ul li{
+  /* Liste öğelerinin yazı boyutu */
+  font-size: 20px;
+  /* Font kalınlığı */
+  font-weight: 600;
+}
+.card button {
+  /* Üstten boşluk */
+  margin-top: 20px;
+  /*buton üzerindeki yazının boyutu*/
+  font-size: 26px;
+  /*buton üzerindeki font kalınlığı*/
+  font-weight: 600;
+  /*Buton rengi */
+  background-color: var(--bg-color);
+  /* Yazı rengi beyaz */
+  color: var(--font-color);
+  /*Border yok*/
+  border: none;
+   /* Butonun iç boşluğu */
+  padding: 10px 20px;
+  /* Yazı boyutu */
+  font-size: 16px;
+  /* Butonun kenarlarının yuvarlaklaşması */
+  border-radius: 4px;
+  /* Üzerine gelince pointer olması */
+  cursor: pointer;
+}
+
+.logo {
+  /* Büyük bir font size verdim*/
+  font-size: 48px;
+  /* Kalın yazı */
+  font-weight: bold;
+  /* Yazı rengi beyaz */
+  color: var(--font-color);
+  /* Logonun arka plan rengi */
+  background-color: var(--logo-color);
+  /* Genişlik */
+  width: 60px;
+  /* Yükseklik */
+  height: 60px;
+  /* Tam yuvarlak olması için */
+  border-radius: 50%;
+  /* Yukardan 0 soldan ve sağdan ortala aşağıdan 20px boşluk */
+  margin: 0 auto 20px;
+  /*içerikleri yatayda hizalamak için*/
+  display: flex;
+  /*dikeyde ortalar */
+  align-items: center;
+  /*yatayda ortalar*/
+  justify-content: center;
+}

@@ -1,0 +1,204 @@
+.quiz {
+  position: relative;
+  /* Arka planın üzerinde kalması için z-index:1*/
+  z-index: 1;
+  /*içerikleri yatayda hizzalamak için flex kullandım*/
+  display: flex;
+  /* Dikeyde ortalama */
+  align-items: center;
+  /* Yatayda ortalama */
+  justify-content: center;
+  /* Tüm ekran yüksekliğini kaplar */
+  height: 100vh;
+  color: var(--bg-color);
+}
+/* fadeInUp adında bir animasyon tanımlıyorum*/
+@keyframes fadeInUp {
+  /* Animasyonun başlangıç durumu 0 başta görünmez ve aşağıdan yukarı doğru gelecek şekilde 30px aşağıdan başlar */
+  0% {
+    /* Görünmez */
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  /* Animasyonun bitiş durumu %100 tamamen görünür ve orijinal konumuna gelir */
+  100% {
+    /* görünür */
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/*animasyonu 0.5 saniyelik geçişle uygular */
+.fade-in {
+  /* animation: animasyon adı 0.5s geçiş saniyesi ease bir geçiş forwards: sonunda son durumda kalması sağlanır*/
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.quiz-card {
+  /* Kartın arka plan rengi*/
+  background-color: var(--font-color);
+  /*iç boşluk*/
+  padding: 20px;
+  /*Gölge efekti */
+  filter: drop-shadow(4px 4px 4px var(--grid-color));
+  /* Saydam açık yeşil kenarlık */
+  border: 10px solid var(--border-color);
+   /* Köşeleri yuvarlatma */
+  border-radius: 6px;
+  /* İçerikleri ortalama */
+  text-align: center;
+  /* Maksimum genişlik */
+  max-width: 600px;
+  /* Ekranın %90'ını kapsar */
+  width: 90%;
+  /* Hover için yumuşak geçiş */
+  transition: all 0.4s  ease-in-out;
+}
+.options{
+  /*şıkların olduğu divin konumlandırılması için flex veriyorum*/
+  display: flex;
+  /*tüm elementlerin alt alta gelmesi için column yapıyorum*/
+  flex-direction: column;
+  /*dikeyde ortalıyorum*/
+  align-items: center;
+  /*yatayda ortalıyorum*/
+  justify-content: center;
+  /*her elementin arasına 10 px boşluk ekliyoru*/
+  gap: 10px;
+  /*options divine üst dış boşluk veriyorum*/
+  margin-top: 10px;
+}
+.options button{
+  /*options divindeki butonlar ekranın %90'ını kaplar*/
+    width: 90%;
+    /*arka plan renkleri*/
+    background-color:var(--border-color);
+    /*butonlara hafif gölge ekliyorum*/
+    filter: drop-shadow(4px 4px 4px var(--grid-color));
+    /*köşelerini 6px kadar yuvarlıyorum*/
+    border-radius: 6px;
+    /*iç boşluk*/
+    padding: 10px;
+    /*hover durumunda 3 snlik ease bir geçiş sağlıyorum */
+    transition: all 0.3s ease;
+    /*yazı boyutu*/
+    font-size: 16px;
+    /*yazı kalınlığı*/
+    font-weight: 500;
+}
+.options button:hover{
+  /*options içindeki butonlara hover olununca arka plan rengini değiştiriyorum*/
+    background-color: var(--bg-color);
+    /*font rengini değiştiriyorum*/
+    color: var(--font-color);
+    /*1.1'lik bir büyüme efekti veriyorum*/
+    transform: scale(1.1);
+    /*hafif gölgelendirme*/
+    filter: drop-shadow(4px 4px 4px var(--bg-color));
+}
+h2{
+  /*Sayfadaki tüm h2 etiketlerinin fontunu ayarlıyorum*/
+    font-size: 24px;
+    /*font kalınlığı*/
+    font-weight: 600;
+}
+p{
+  /*Sayfadaki tüm p etiketlerinin fontunu ayarlıyorum*/
+    font-size: 18px;
+    /*font kalınlığı*/
+    font-weight: 500;
+}
+.quiz-images{
+  /*quiz images divinin ekranın %90 ını kapsamasını sağlıyorum*/
+    width: 90%;
+    /*yukarıdan ve aşağıdan 10px dış boşluk verip yatayda ortalıyorum*/
+    margin: 10px auto;
+    /*Köşelerini hafif yuvarlıyorum*/
+    border-radius: 6px;
+}
+.quiz-images img{
+  /*img bulunduğu divin %100 ünü kapsar*/
+    width: 100%;
+    /*hepsine ortak height veriyorum*/
+    height: 240px;
+    /*yukarıdan ve aşağıdan 10px lik dış boşluk verip ortalıyorum*/
+    margin: 10px auto;
+    /*img kapsayıcının genişlik ve yüksekliğine tam oturur*/
+    object-fit:fill;
+    /*köşeleri yuvarlaklaştrıyorum*/
+    border-radius: 6px;
+    /*12pxlik iç boşluk veriyorum*/
+    padding: 12px;
+    /*arka plan rengi beyaz*/
+    background: #fff;
+    /*1px lik solid kenarlık*/
+    border: 1px solid #ccc;
+    /*gölgelendirme*/
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+}
+.timer{
+  /*timer divine üst dış boşluk*/
+  margin-top: 10px;
+}
+.result {
+  position: relative;
+  /* Arka planın üzerinde kalması için z-index:1*/
+  z-index: 1;
+  /*içerikleri yatayda hizalamak için flex kullandım*/
+  display: flex;
+  /* Dikeyde ortalama */
+  align-items: center;
+  /* Yatayda ortalama */
+  justify-content: center;
+  /* Tüm ekran yüksekliğini kaplar */
+  height: 100vh;
+  color: var(--bg-color);
+}
+.result-div{
+   /* result-div arka plan rengi*/
+   background-color: var(--font-color);
+   /*iç boşluk*/
+   padding: 20px;
+   /*Gölge efekti */
+   filter: drop-shadow(4px 4px 4px var(--grid-color));
+   /* Saydam açık yeşil kenarlık */
+   border: 10px solid var(--border-color);
+    /* Köşeleri yuvarlatma */
+   border-radius: 6px;
+   /* İçerikleri ortalama */
+   text-align: center;
+   /* Maksimum genişlik */
+   max-width: 400px;
+   /* Ekranın %50'sini kapsar */
+   width: 50%;
+
+}
+.result-div button{
+  /*result-div içindeki butonlar ekranın %60ını kapsar*/
+  width: 60%;
+  /*arka plan rengi*/
+  background-color: var(--border-color);
+  /*gölgelendirme*/
+  filter: drop-shadow(4px 4px 4px var(--grid-color));
+  /*köşelerin yuvarlaklaşması*/
+  border-radius: 6px;
+  /*yukarıdan ve aşağıdan 5 soldan ve sağdan 10 pxlik iç boşluk*/
+  padding: 5px 10px;
+  /*hover için yumuşak bir geçiş*/
+  transition: all 0.3s ease;
+  /*yazı boyutu*/
+  font-size: 16px;
+  /*font kalınlığı*/
+  font-weight: 500;
+  /*butonlar arası dış boşluk*/
+  margin: 3px;
+}
+.result-div button:hover{
+  /*result divindeki butonlara hover olununca arka plan rengi değişir*/
+  background-color: var(--bg-color);
+  /*yazı rengi değişir*/
+  color: var(--font-color);
+  /*1.1 lik bir büyüme efekti*/
+  transform: scale(1.1);
+  /*hafif gölge*/
+  filter: drop-shadow(4px 4px 4px var(--bg-color));
+}
