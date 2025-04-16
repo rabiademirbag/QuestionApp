@@ -181,31 +181,70 @@ function Quiz(){
     //Seçili cevap temizlenir
     setSelectedOption("");
   }
-  // Eğer test bitmişse sonucu gösteren ekran render edilir
-    if (isFinished) {
-      return (
-        /* Sonuç ekranı kapsayıcı div */
-        <div className="result">
-          {/*İçerik için alt div*/}
-          <div className="result-div">
-            {/* Başlık */}
-            <h2>Test Bitti</h2>
-            {/*cevapları tuttuğum listedeki doğru cevapları alıp length ile doğru cevap sayısını hesaplar*/}
-            <p>Doğru: {answerList.filter(a => a.correct).length}</p>
-            {/*cevapları tuttuğum listedeki yanlış cevapları alıp length ile yanlış cevap sayısını hesaplar*/}
-            <p>Yanlış: {answerList.filter(a => a.selected && !a.correct).length}</p>
-            {/*Soruların olduğu array ile cevapları tuttuğum arrayin farkını alıp boş sayısını hesplar*/}
-            <p>Boş: {questions.length - answerList.length}</p>
-            {/*Teste tekrar başlayabilmek için buton*/}
-            <button onClick={restartQuiz} className="restart-button">
-            Teste Tekrar Başla
-          </button>
-          {/*Ana sayfaya dönebilmek için buton*/}
-          <button onClick={()=>navigate ('/')}>Ana Sayfaya Geri Dön</button>
-          </div>
+
+  
+// Eğer test bitmişse sonucu gösteren ekran render edilir
+if (isFinished) {
+  return (
+    // Sonuç ekranı için dış kapsayıcı div
+    <div className="result">
+      {/* Sonuç kartı için iç div */}
+      <div className="result-div">
+        {/* Testin tamamlandığını belirten başlık */}
+        <h2>Test Bitti</h2>
+        {/* Doğru cevap sayısı */}
+        <p>Doğru: {answerList.filter(a => a.correct).length}</p>
+        {/* Yanlış cevap sayısı (cevap verilmiş ama yanlış olanlar) */}
+        <p>Yanlış: {answerList.filter(a => a.selected && !a.correct).length}</p>
+        {/* Boş bırakılan soru sayısı */}
+        <p>Boş: {questions.length - answerList.length}</p>
+
+        {/* Her bir soruya ait detayları gösteren alan */}
+        <div className="answer-summary">
+          {/* Tüm soruları map ile dönüyorum */}
+          {questions.map((q, index) => {
+            // Bu soruya ait kullanıcı cevabını buluyorum
+            const answer = answerList.find((a) => a.question === index);
+            // Eğer cevap verilmişse kullanıcı cevabını alıyorum yoksa "Boş" yazıyorum
+            const userAnswer = answer ? answer.selected : "Boş";
+            // Eğer cevap verilmişse doğru mu yanlış mı kontrol ediyorum
+            const isCorrect = answer ? answer.correct : false;
+
+            return (
+              // Her soru için ayrı bir kutucuk render ediyorum
+              <div key={index} style={{ marginTop: "10px", padding: "10px", border: "1px solid #ccc", borderRadius: "8px" }}>
+                {/* Soru metni */}
+                <p><strong>{index + 1}. Soru:</strong> {q.question}</p>
+                {/* Kullanıcının verdiği cevap */}
+                <p><strong>Verdiğiniz Cevap:</strong> {userAnswer}</p>
+                {/* Doğru cevap */}
+                <p><strong>Doğru Cevap:</strong> {q.answer}</p>
+                <p>
+                  {/* Cevabın durumunu (doğru/yanlış/boş) gösteriyorum */}
+                  <strong>Durum:</strong>{" "}
+                  {answer
+                    ? isCorrect
+                      // Doğru cevapsa yeşil
+                      ? <span style={{ color: "green" }}>Doğru</span>
+                      // Yanlış cevapsa kırmızı
+                      : <span style={{ color: "red" }}>Yanlış</span>
+                      // Cevap verilmemişse gri
+                    : <span style={{ color: "gray" }}>Boş</span>}
+                </p>
+              </div>
+            );
+          })}
         </div>
-      );
-    }
+
+        <button onClick={restartQuiz} className="restart-button">
+          Teste Tekrar Başla
+        </button>
+        <button onClick={() => navigate('/')}>Ana Sayfaya Geri Dön</button>
+      </div>
+    </div>
+  );
+}
+
     {/*Test bitmediyse Şu anki soruyu questions dizisinden alır*/}
     const current = questions[questionIndex];
     return (
