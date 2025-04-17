@@ -31,3 +31,5 @@ Bu proje, React ve Vite kullanılarak geliştirilmiş zaman sınırlı, görsell
 ![ss3](src/screenshots/ss3.png)
 
 ![ss4](src/screenshots/ss4.png)
+
+![ss5](src/screenshots/ss5.png)
